@@ -8,7 +8,8 @@
           "tank_protocol": "http or https",
           "tank_host": "Tank Host (IP address)",
           "tank_name": "Tank Name",
-          "update_interval": "Update Interval (1-60 minutes)"
+          "update_interval": "Update Interval (1-60 minutes)",
+          "led_channels": "LED Channels"
         }
       }
     },
@@ -30,7 +31,8 @@
           "tank_protocol": "http or https",
           "tank_host": "Tank Host (IP address)",
           "tank_name": "Tank Name",
-          "update_interval": "Update Interval (1-60 minutes)"
+          "update_interval": "Update Interval (1-60 minutes)",
+          "led_channels": "LED Channels"
         }
       }
     }
@@ -73,6 +75,12 @@
     "light": {
       "light_name": {
         "name": "Light"
+      },
+      "light_white": {
+        "name": "White Light"
+      },
+      "light_blue": {
+        "name": "Blue Light"
       }
     },
     "select": {
