@@ -3,7 +3,7 @@ from homeassistant import config_entries
 from homeassistant.core import callback
 import logging
 
-from .const import DOMAIN, CONF_TANK_HOST, CONF_TANK_NAME, CONF_TANK_PROTOCOL, CONF_UPDATE_INTERVAL
+from .const import DOMAIN, CONF_TANK_HOST, CONF_TANK_NAME, CONF_TANK_PROTOCOL, CONF_UPDATE_INTERVAL, CONF_LED_CHANNELS, LED_CHANNELS_4, LED_CHANNELS_2
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -34,6 +34,10 @@ class JuwelHelialuxConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             vol.Required(CONF_TANK_HOST): str,
             vol.Required(CONF_TANK_NAME): str,
             vol.Required(CONF_UPDATE_INTERVAL, default=1): vol.All(vol.Coerce(int), vol.Range(min=1)),
+            vol.Required(CONF_LED_CHANNELS, default=LED_CHANNELS_4): vol.In({
+                LED_CHANNELS_4: "4 Channels (RGBW)",
+                LED_CHANNELS_2: "2 Channels (White + Blue)",
+            }),
         })
 
         return self.async_show_form(
@@ -142,6 +146,10 @@ class JuwelHelialuxOptionsFlow(config_entries.OptionsFlow):
             vol.Required(CONF_TANK_HOST, default=self._config_entry.data.get(CONF_TANK_HOST)): str,
             vol.Required(CONF_TANK_NAME, default=self._config_entry.data.get(CONF_TANK_NAME)): str,
             vol.Optional(CONF_UPDATE_INTERVAL, default=self._config_entry.data.get(CONF_UPDATE_INTERVAL, 1)): vol.All(vol.Coerce(int), vol.Range(min=1)),
+            vol.Required(CONF_LED_CHANNELS, default=self._config_entry.data.get(CONF_LED_CHANNELS, LED_CHANNELS_4)): vol.In({
+                LED_CHANNELS_4: "4 Channels (RGBW)",
+                LED_CHANNELS_2: "2 Channels (White + Blue)",
+            }),
         })
 
         return self.async_show_form(
