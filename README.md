@@ -69,7 +69,14 @@ Download this repo and copy the `custom_components/juwel_helialux` folder to you
 
 ### Setup
 
-Once Home Assistant is back up, go to **Settings → Integrations** and add **Juwel HeliaLux**. Fill out the information (you'll need to know the host/IP of your controller). The integration will automatically detect whether your controller is a 2-channel (White + Blue) or 4-channel (RGB + White) model. Your sensors and light should (hopefully) appear.
+Once Home Assistant is back up, go to **Settings → Integrations** and add **Juwel HeliaLux**. Fill out the information (you'll need to know the host/IP of your controller) and select the correct **LED Channels** option for your hardware:
+
+* **4 Channels (RGBW)** — for standard HeliaLux Spectrum controllers with Red, Green, Blue and White channels. This is the default and matches the original integration behaviour.
+* **2 Channels (White + Blue)** — for older HeliaLux LED bars (e.g. HeliaLux LED 600/800 first generation) that only have White and Blue channels. This creates two separate brightness sliders (`light.tankname_light_white` and `light.tankname_light_blue`) instead of a colour wheel.
+
+> The channel mode can also be changed later via **Settings → Integrations → Juwel HeliaLux → Configure**.
+
+Your sensors and light should (hopefully) appear.
 
 ## Once installed
 
